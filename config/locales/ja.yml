@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    errors:
+    models:
+      webbook: WEBブック
+    attributes:
+      id: ID
+      title: 書籍名
+      author: 著者
+      description: 商品説明
+      price: 価格
+      release_date: 発売日
+      release: 公開フラグ
+      
