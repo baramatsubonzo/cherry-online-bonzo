@@ -1,0 +1,2 @@
+class Webbook < ApplicationRecord
+end
