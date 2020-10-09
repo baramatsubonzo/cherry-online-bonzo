@@ -1,0 +1,125 @@
+
+inherit_gem:
+  sgcop: rails/rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'config/initializers/**/*'
+    - 'config/routes.rb'
+    - 'config/backup.rb'
+    - 'config/puma.rb'
+    - 'config/spring.rb'
+    - 'config/environments/*'
+    - 'db/schema.rb'
+    - 'db/seeds.rb'
+    - 'db/migrate/**/*'
+    - 'spec/rails_helper.rb'
+    - 'spec/spec_helper.rb'
+    - 'scripts/**/*'
+    - 'deploy/**/*'
+    - 'Guardfile'
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/FirstHashElementIndentation:
+  Enabled: false
+
+# change を and でチェインしたときの修正が気持ち悪いので Exclude
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+    - 'spec/**/*'
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+
+Lint/ParenthesesAsGroupedExpression:
+  Exclude:
+    - 'app/helpers/**/*'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/jobs/**/*'
+
+Metrics/LineLength:
+  Max: 180
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'app/policies/**/*'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/policies/**/*'
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 6
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/features/**/*'
+
+RSpec/OverwritingSetup:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/FormatStringToken:
+  Exclude:
+    - 'config/routes.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
