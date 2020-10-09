@@ -30,3 +30,4 @@
 
 # ignore
 .DS_Store
+vendor/bundle
