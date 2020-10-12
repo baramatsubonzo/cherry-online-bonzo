@@ -11,7 +11,7 @@
           .col-md-6
             .card-body
               .card-title
-                %h5= webbook.title
+                %h5= link_to webbook.title, webbook_path(webbook)
               .card-text
                 %p= webbook.author
               .card-text
