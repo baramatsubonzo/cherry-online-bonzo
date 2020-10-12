@@ -1,2 +1,4 @@
 %h1 Webbooks#show
 %p Find me in app/views/webbooks/show.html.haml
+
+= image_tag @webbook.image if @webbook.image.attached?

@@ -3,6 +3,7 @@ class WebbooksController < ApplicationController
   end
 
   def show
+    @webbook = Webbook.find(params[:id])
   end
 
   def new
@@ -32,6 +33,6 @@ class WebbooksController < ApplicationController
 
   def webbook_params
     params.require(:webbook)
-          .permit(:title, :author, :description, :price, :release_date, :release)
+          .permit(:title, :author, :description, :price, :release_date, :release, :image)
   end
 end

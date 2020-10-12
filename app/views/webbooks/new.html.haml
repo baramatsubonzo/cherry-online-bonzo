@@ -19,4 +19,7 @@
   .form-group
     = f.label :release
     = f.radio_button :release, class: 'form-control'
+  .form-group
+    = f.label :image
+    = f.file_field :image, class: 'form-control'
   = f.submit nil, class: 'btn btn-primary'
