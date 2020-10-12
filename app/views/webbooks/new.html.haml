@@ -1,2 +1,22 @@
-%h1 Webbooks#new
-%p Find me in app/views/webbooks/new.html.haml
+%h1 WEBブック新規作成画面
+
+= form_with model: @webbook, local: true do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :description
+    = f.text_area :description
+  .form-group
+    = f.label :author
+    = f.text_field :author, class: 'form-control'
+  .form-group
+    = f.label :price
+    = f.text_field :price, class: 'form-control'
+  .form-group
+    = f.label :release_date
+    = f.date_select :release_date, class: 'form-control'
+  .form-group
+    = f.label :release
+    = f.radio_button :release, class: 'form-control'
+  = f.submit nil, class: 'btn btn-primary'
