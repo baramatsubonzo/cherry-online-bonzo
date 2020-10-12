@@ -1,5 +1,6 @@
 class WebbooksController < ApplicationController
   def index
+    @webbooks = Webbook.all
   end
 
   def show
