@@ -22,9 +22,17 @@ class WebbooksController < ApplicationController
   end
 
   def edit
+    @webbook = Webbook.find(params[:id])
   end
 
   def update
+    @webbook = Webbook.find(params[:id])
+    if @webbook.update(webbook_params)
+      flash[:success] = "WEBブックを更新しました"
+      redirect_to root_url
+    else
+      render 'edit'
+    end
   end
 
   def destroy
