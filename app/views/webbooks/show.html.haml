@@ -1,4 +1,24 @@
-%h1 Webbooks#show
-%p Find me in app/views/webbooks/show.html.haml
+%h2 Webブックの詳細ページ
 
-= image_tag @webbook.image if @webbook.image.attached?
+.card.mb-3
+  .row.no-gutters
+    .col-md-6
+      .bd-placeholder-img{style: "margin-bottom: 30px"}
+        = image_tag @webbook.image.variant(resize_to_fit: [500, 500]) if @webbook.image.attached?
+    .col-md-6
+      .card-body
+        %h2= @webbook.title
+        %p= @webbook.author
+        %p= "#{@webbook.release_date}発売"
+        %h4= "#{@webbook.price}円"
+        // カート機能を作成後、リンクを追加する
+        = link_to 'カートに入れる', '#', class: 'btn btn-primary mr-3'
+    .card-body
+      %h5= "説明"
+      %p= @webbook.description
+    .card-body
+      // 後で、ページと目次の実装は追加する
+      %h5= "目次"
+// ユーザー画面からは見えないようにする
+= link_to '編集', edit_webbook_path, class: 'btn btn-primary mr-3'
+  
