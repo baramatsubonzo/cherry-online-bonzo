@@ -1,2 +1,15 @@
-%h1 Carts#show
-%p Find me in app/views/carts/show.html.haml
+%h2 カート画面
+.card{style: "max-width: 540px;"}
+  -@cart_webbooks.each do |cart_webbook|
+    .card.mb-3
+      .row.no-gutters
+        .col-md-6
+          .bd-placeholder-img{style: "margin-bottom: 30px"}
+            = image_tag cart_webbook.webbook.image.variant(resize_to_fit: [200, 200]) if cart_webbook.webbook.image.attached?
+        .col-md-6
+          .card-body
+            %h2= cart_webbook.webbook.title
+            %p= cart_webbook.webbook.author
+            %h4= "#{cart_webbook.webbook.price}円"
+            // カート機能を作成後、リンクを追加する
+            = link_to '削除', delete_webbook_path , method: :delete, class: "btn btn-xs btn-danger", data: {confirm: 'カートから削除してよろしいですか？'}

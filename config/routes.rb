@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  get 'carts/show'
   post '/add_webbook' => 'carts#add_webbook'
   delete '/delete_webbook' => 'carts#delete_webbook'
 
   root "webbooks#index"
   resources :webbooks
+
+  resources :carts, only:[:show]
 
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'

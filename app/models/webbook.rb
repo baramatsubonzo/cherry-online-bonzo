@@ -1,5 +1,5 @@
 class Webbook < ApplicationRecord
   has_one_attached :image
 
-  has_many :carts, through: :cart_webbooks
+  has_many :cart_webbooks
 end
