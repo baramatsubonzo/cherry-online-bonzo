@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   root "webbooks#index"
   resources :webbooks
-  resources :users
+  resources :users, only: [:new]
 end
