@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root "webbooks#index"
   resources :webbooks
-  resources :users, only: [:new]
+  get 'signup', to: 'users#new'
+  post 'signup', to: 'users#create'
+
   namespace :users do
     get 'login', to: 'session#new'
     post 'login', to: 'session#create'

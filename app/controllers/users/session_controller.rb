@@ -1,4 +1,6 @@
 class Users::SessionController < ApplicationController
+  # skip_before_action :login_required
+
   def new
   end
 
@@ -15,7 +17,7 @@ class Users::SessionController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_path, notice: 'ログアウトしました'
+    redirect_to users_login_path, notice: 'ログアウトしました'
   end
 
   private
