@@ -10,5 +10,11 @@
   %body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
       .navbar-brand CherryOnline
+
+      %ul.navbar-nav.ml-auto
+        - if current_user
+          %li.nav-item=link_to 'ログアウト', users_logout_path, method: :delete, class: 'nav-link'
+        - else
+          %li.nav-item= link_to 'ログイン', users_login_path, class: 'nav-link'
     .container
       = yield
