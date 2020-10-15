@@ -12,4 +12,4 @@
             %p= cart_webbook.webbook.author
             %h4= "#{cart_webbook.webbook.price}円"
             // カート機能を作成後、リンクを追加する
-            = link_to '削除', delete_webbook_path , method: :delete, class: "btn btn-xs btn-danger", data: {confirm: 'カートから削除してよろしいですか？'}
+            = link_to '削除', delete_webbook_path(webbook_id: cart_webbook.webbook.id), method: :delete, class: "btn btn-xs btn-danger", data: {confirm: 'カートから削除してよろしいですか？'}
