@@ -257,6 +257,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (5.28.0)
     sysexits (1.2.0)
     temple (0.8.2)
     thor (1.0.1)
@@ -302,6 +303,7 @@ DEPENDENCIES
   sgcop!
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe
   tzinfo-data
   web-console (>= 3.3.0)
   webpacker (~> 4.0)

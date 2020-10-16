@@ -15,4 +15,7 @@ Rails.application.routes.draw do
     post 'login', to: 'session#create'
     delete 'logout', to: 'session#destroy'
   end
+
+  # resources :charges
+  post "carts/:id/charge", to: "charges#create", as: "charges"
 end

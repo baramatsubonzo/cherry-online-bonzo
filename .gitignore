@@ -29,6 +29,7 @@
 /config/master.key
 
 # ignore
+.envrc
 .DS_Store
 vendor/bundle
 /public/packs
