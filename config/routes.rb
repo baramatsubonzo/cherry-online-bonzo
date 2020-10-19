@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
-  # delete 'logout', to: 'session#destroy'
+  delete 'logout', to: 'sessions#destroy'
 
   # resources :charges
   post "carts/:id/charge", to: "charges#create", as: "charges"
