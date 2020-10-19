@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :current_cart
   include SessionsHelper
-  # before_action :login_required
+  before_action :login_required
 
   private
 
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     @current_cart = Cart.find_by(user_id: current_user.id)
   end
 
-  # def login_required
-  #   redirect_to users_login_path unless current_user
-  # end
+  def login_required
+    redirect_to login_path unless current_user
+  end
 end
