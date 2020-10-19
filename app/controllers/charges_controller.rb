@@ -4,7 +4,7 @@ class ChargesController < ApplicationController
   
   def create
     @webbook = Webbook.find(params[:id])
-    
+
     @customer_form = CustomerForm.new
 
     stripe
@@ -13,6 +13,8 @@ class ChargesController < ApplicationController
     # ここに購入完了のメール通知処理を実装する
     # 履歴が作成されることを追加する
     add_purchase_history
+
+    PurchaseMailer.creation_email(current_user).deliver_now
     redirect_to webbook_path(params[:id]), notice: "商品を購入しました！"
   
   rescue Stripe::CardError => e
