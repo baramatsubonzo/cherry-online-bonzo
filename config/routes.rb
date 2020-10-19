@@ -10,11 +10,9 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
 
-  namespace :users do
-    get 'login', to: 'session#new'
-    post 'login', to: 'session#create'
-    delete 'logout', to: 'session#destroy'
-  end
+  # get 'login', to: 'session#new'
+  # post 'login', to: 'session#create'
+  # delete 'logout', to: 'session#destroy'
 
   # resources :charges
   post "carts/:id/charge", to: "charges#create", as: "charges"
