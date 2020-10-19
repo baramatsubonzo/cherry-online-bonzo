@@ -11,6 +11,8 @@ class UsersController < ApplicationController
     if @user.save
       @cart = @user.create_cart
       @purchase_history = @user.create_purchase_history
+      log_in @user
+      # todo: ユーザーぺーじへ飛ぶ
       redirect_to root_path, notice: "ユーザー「#{@user.email}を登録しました」"
     else
       render :new
