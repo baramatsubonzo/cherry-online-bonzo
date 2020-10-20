@@ -7,9 +7,8 @@ class ChargesController < ApplicationController
   def create
     @webbook = Webbook.find(params[:id])
 
-    @customer_form = CustomerForm.new
-
-    stripe
+    @stripe_form = StripeForm.new(params[:stripeEmail], params[:stripeToken], @webbook)
+    @stripe_form.save!
 
     # 購入が成功した場合の処理
     # ここに購入完了のメール通知処理を実装する
@@ -18,10 +17,6 @@ class ChargesController < ApplicationController
 
     PurchaseMailer.creation_email(current_user).deliver_now
     redirect_to webbook_path(params[:id]), notice: "商品を購入しました！"
-  
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to new_charge_path
   end
 
   private
@@ -34,20 +29,6 @@ class ChargesController < ApplicationController
     @purchase_history_webbook.save
     # todo: 後でわかりやすく変更する
     # redirect_to current_cart
-  end
-
-  def stripe
-    customer = Stripe::Customer.create({
-      email: params[:stripeEmail],
-      source: params[:stripeToken],
-    })
-  
-    charge = Stripe::Charge.create({
-        customer: customer.id,
-        amount: @webbook.price,
-        description: "商品名: #{@webbook.title}",
-        currency: 'jpy',
-    })
   end
 
   def prevent_duouble_purchase
