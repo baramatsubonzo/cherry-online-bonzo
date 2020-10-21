@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   delete '/delete_webbook' => 'carts#delete_webbook'
 
   root "webbooks#index"
-  resources :webbooks
+  
+  resources :webbooks do
+    resources :pages
+  end
 
   resources :carts, only:[:show]
 

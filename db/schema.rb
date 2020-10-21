@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_16_074423) do
+ActiveRecord::Schema.define(version: 2020_10_21_020943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 2020_10_16_074423) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "webbook_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["webbook_id"], name: "index_pages_on_webbook_id"
+  end
+
   create_table "purchase_histories", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -91,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_10_16_074423) do
   add_foreign_key "cart_webbooks", "carts"
   add_foreign_key "cart_webbooks", "webbooks"
   add_foreign_key "carts", "users"
+  add_foreign_key "pages", "webbooks"
   add_foreign_key "purchase_histories", "users"
   add_foreign_key "purchase_history_webbooks", "purchase_histories"
   add_foreign_key "purchase_history_webbooks", "webbooks"
