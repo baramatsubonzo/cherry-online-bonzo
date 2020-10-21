@@ -1,8 +1,12 @@
-%h2 Webブックの詳細ページ
-
-.card.mb-3
-  .card-body
-    %h1= @page.title
-    %p= markdown(@page.content)
-// ユーザー画面からは見えないようにする
--# = link_to '編集', edit_page_path, class: 'btn btn-primary mr-3'
+.row
+  .col-2
+    = render 'pages/sidebar'
+  
+  .col-10
+    %h2 Webブックの詳細ページ
+    .card.mb-3
+      .card-body
+        %h1= @page.title
+        %p= markdown(@page.content)
+    // ユーザー画面からは見えないようにする
+    -# = link_to '編集', edit_page_path, class: 'btn btn-primary mr-3'

@@ -17,14 +17,8 @@
         - else
           %li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
     .row
-      .col-2
-        // Todo:helperかどこかにロジックを切り出す
-        // pagesコントローラのshowでのみ、サイドバーを出したい。
-        - if params[:controller] == "pages" && params[:action] == "show"
-          = render 'layouts/sidebar'
-      .col-10
-        .container
-          - if flash.notice.present?
-            .alert.alert-success
-              = flash.notice
-          = yield
+      .container
+        - if flash.notice.present?
+          .alert.alert-success
+            = flash.notice
+        = yield
