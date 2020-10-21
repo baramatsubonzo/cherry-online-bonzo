@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   def index
+    @webbook = Webbook.find(params[:webbook_id])
+    @pages = @webbook.pages
   end
 
   def show

@@ -1,2 +1,9 @@
-%h1 Pages#index
-%p Find me in app/views/pages/index.html.haml
+%table.table.table-bordered
+  %thead
+    %tr
+      %th タイトル
+      
+  %tbody
+    - @pages.each do |page|
+      %tr
+        %td= page.title
