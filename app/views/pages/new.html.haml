@@ -1,6 +1,6 @@
 %h1 WEBブック新規作成画面
 
-= form_with model: @webbook, local: true do |f|
+= form_with model: @page, url: webbook_pages_path, local: true do |f|
   .form-group
     = f.label :title
     = f.text_field :title, class: 'form-control'
