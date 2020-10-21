@@ -1,7 +1,8 @@
 %h3 ページ一覧
-%ul
-  %li= link_to 'hoge', '#'
-  %li= link_to 'fuga', '#'
-  %li= link_to 'piyo', '#'
+- @pages.each do |page|
+  %ul
+    %li= link_to "#{page.title}", webbook_page_path(1, page)
+    -# %li= link_to 'fuga', '#'
+    -# %li= link_to 'piyo', '#'
 
 
