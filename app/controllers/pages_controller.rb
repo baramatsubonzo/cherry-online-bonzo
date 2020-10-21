@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   end
 
   def show
+    @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
   end
 
   def new

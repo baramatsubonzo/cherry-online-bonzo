@@ -1,2 +1,8 @@
-%h1 Pages#show
-%p Find me in app/views/pages/show.html.haml
+%h2 Webブックの詳細ページ
+
+.card.mb-3
+  .card-body
+    %h1= @page.title
+    %p= @page.content
+// ユーザー画面からは見えないようにする
+-# = link_to '編集', edit_page_path, class: 'btn btn-primary mr-3'
