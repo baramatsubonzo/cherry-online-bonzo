@@ -1,2 +1,10 @@
-%h1 Pages#new
-%p Find me in app/views/pages/new.html.haml
+%h1 WEBブック新規作成画面
+
+= form_with model: @webbook, local: true do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :content
+    = f.text_area :content, rows: 5, class: 'form-control'
+  = f.submit "作成する", class: 'btn btn-primary'
