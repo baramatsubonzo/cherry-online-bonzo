@@ -16,8 +16,15 @@
           %li.nav-item=link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
         - else
           %li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
-    .container
-      - if flash.notice.present?
-        .alert.alert-success
-          = flash.notice
-      = yield
+    .row
+      .col-2
+        // Todo:helperかどこかにロジックを切り出す
+        // pagesコントローラのshowでのみ、サイドバーを出したい。
+        - if params[:controller] == "pages" && params[:action] == "show"
+          = render 'layouts/sidebar'
+      .col-10
+        .container
+          - if flash.notice.present?
+            .alert.alert-success
+              = flash.notice
+          = yield
