@@ -6,6 +6,9 @@ class PagesController < ApplicationController
 
   def show
     @webbook = Webbook.find(params[:webbook_id])
+    # FYI: 購入履歴になかったら、本を読めないように制限する
+    redirect_to root_path unless user_has_book?
+
     @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
   end
 
