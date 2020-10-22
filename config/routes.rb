@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :webbooks
+  end
+
   post '/add_webbook' => 'carts#add_webbook'
   delete '/delete_webbook' => 'carts#delete_webbook'
 
