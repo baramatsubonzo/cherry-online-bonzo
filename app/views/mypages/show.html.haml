@@ -11,11 +11,9 @@
           .col-md-6
             .card-body
               .card-title
-                // TODO: このリンクを張り替える
-                %h5= link_to webbook.title, webbook_path(webbook)
+                %h5= webbook.title
               .card-text
                 %p= webbook.author
               .card-text
-                %p= "#{webbook.release_date}発売"
-              .card-text
-                %h5= "#{webbook.price}円"
+                // TODO: ここのpageのidの渡し方を変えてあげる
+                %p= link_to "この本を読む", webbook_page_path(webbook.id, 1), class: 'btn btn-primary'
