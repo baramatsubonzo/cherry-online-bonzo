@@ -22,4 +22,12 @@ class ChargesController < ApplicationController
   def prevent_duouble_purchase
     redirect_to root_path, notice: "すでに購入済みの商品です" if user_has_book?
   end
+
+  def user_has_book?
+    @webbook = Webbook.find(params[:id])
+    current_user.purchase_history
+      .purchase_history_webbooks
+      .find_by(webbook_id: @webbook.id)
+      .present?
+  end
 end

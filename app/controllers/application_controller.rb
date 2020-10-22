@@ -17,12 +17,4 @@ class ApplicationController < ActionController::Base
   def login_required
     redirect_to login_path unless current_user
   end
-
-  def user_has_book?
-    @webbook = Webbook.find(params[:id])
-    current_user.purchase_history
-      .purchase_history_webbooks
-      .find_by(webbook_id: @webbook.id)
-      .present?
-  end
 end
