@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   root "webbooks#index"
   
-  resources :webbooks do
+  resources :webbooks, only:[:index, :show] do
     resources :pages
   end
 
