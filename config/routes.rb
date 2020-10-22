@@ -13,11 +13,8 @@ Rails.application.routes.draw do
 
   # RFC: 今後管理者がユーザー一覧、詳細画面を見る可能性があると考えた。
   # そのため、ユーザーが自分の情報を見るためには、mypageというリソースから閲覧することにする。
-  # TODO: user一覧ページの作成
-  resources :users, only:[:index] do
-    resource :mypage, only:[:show]
-  end
-
+  resource :mypage, only:[:show]
+  
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
 
