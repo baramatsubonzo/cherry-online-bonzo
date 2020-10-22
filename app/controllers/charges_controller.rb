@@ -24,10 +24,9 @@ class ChargesController < ApplicationController
   end
 
   def user_has_book?
-    @webbook = Webbook.find(params[:id])
     current_user.purchase_history
       .purchase_history_webbooks
-      .find_by(webbook_id: @webbook.id)
+      .find_by(webbook_id: params[:id])
       .present?
   end
 end
