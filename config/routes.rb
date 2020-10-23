@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-
-  namespace :admin do
-    get 'pages/index'
-    get 'pages/show'
-    get 'pages/new'
-    get 'pages/edit'
-  end
   namespace :admin do
     root "webbooks#index"
     resources :webbooks do

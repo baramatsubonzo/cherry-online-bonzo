@@ -1,4 +1,6 @@
 class Admin::WebbooksController < ApplicationController
+  before_action :require_admin
+
   def index
     @webbooks = Webbook.all
   end
@@ -43,5 +45,9 @@ class Admin::WebbooksController < ApplicationController
   def webbook_params
     params.require(:webbook)
           .permit(:title, :author, :description, :price, :release_date, :release, :image)
+  end
+
+  def require_admin
+    redirect_to root_path unless current_user.admin?
   end
 end
