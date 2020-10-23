@@ -15,7 +15,7 @@ class Admin::WebbooksController < ApplicationController
     @webbook = Webbook.new(webbook_params)
     if @webbook.save
       flash[:success] = "新しいWEBブックを作成しました"
-      redirect_to root_url
+      redirect_to admin_root_url
     else
       render 'new'
     end
@@ -29,7 +29,7 @@ class Admin::WebbooksController < ApplicationController
     @webbook = Webbook.find(params[:id])
     if @webbook.update(webbook_params)
       flash[:success] = "WEBブックを更新しました"
-      redirect_to root_url
+      redirect_to admin_root_url
     else
       render 'edit'
     end
