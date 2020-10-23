@@ -1,6 +1,6 @@
 %h1 管理者用WEBブック新規作成画面
 
-= form_with model: @webbook, url: admin_webbook_path, local: true do |f|
+= form_with model: @webbook, url: admin_webbooks_path, local: true do |f|
   .form-group
     = f.label :title
     = f.text_field :title, class: 'form-control'
