@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    get 'pages/index'
+    get 'pages/show'
+    get 'pages/new'
+    get 'pages/edit'
+  end
+  namespace :admin do
     root "webbooks#index"
-    resources :webbooks
+    resources :webbooks do
+      resources :pages
+    end
   end
 
   post '/add_webbook' => 'carts#add_webbook'
@@ -11,7 +19,7 @@ Rails.application.routes.draw do
   root "webbooks#index"
   
   resources :webbooks, only:[:index, :show] do
-    resources :pages
+    resources :pages, only:[:index, :show]
   end
 
   resources :carts, only:[:show]
