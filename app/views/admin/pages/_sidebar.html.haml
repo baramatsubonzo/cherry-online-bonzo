@@ -1,4 +1,5 @@
-%h3 ページ一覧
+%h3 管理ページ一覧
 - @webbook.pages.each do |page|
   %ul
-    %li= link_to "#{page.title}", webbook_page_path(@webbook, page)
+    -# - binding.pry
+    %li= link_to "#{page.title}", admin_webbook_page_path(@webbook, page)

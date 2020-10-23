@@ -11,19 +11,20 @@ class Admin::PagesController < ApplicationController
     @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
   end
 
-  # def new
-  #   @page = Page.new
-  # end
+  def new
+    @webbook = Webbook.find_by(id: params[:webbook_id])
+    @page = Page.new
+  end
 
-  # def create
-  #   @page = Page.new(page_params.merge(webbook_id: params[:webbook_id]))
-  #   if @page.save
-  #     flash[:success] = "新しいページを作成しました"
-  #     redirect_to root_url
-  #   else
-  #     render 'new'
-  #   end
-  # end
+  def create
+    @page = Page.new(page_params.merge(webbook_id: params[:webbook_id]))
+    if @page.save
+      flash[:success] = "新しいページを作成しました"
+      redirect_to admin_webbook_pages_path
+    else
+      render 'new'
+    end
+  end
 
   # def edit
   # end
