@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  # TODO: 公開フラグがtrueの物だけに制限する
   def index
     @webbook = Webbook.find(params[:webbook_id])
     @pages = @webbook.pages

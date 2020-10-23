@@ -1,10 +1,10 @@
 class WebbooksController < ApplicationController
   def index
-    @webbooks = Webbook.all
+    @webbooks = Webbook.where(release: true).all
   end
 
   def show
-    @webbook = Webbook.find(params[:id])
+    @webbook = Webbook.where(release: true).find(params[:id])
   end
 
   private
