@@ -28,8 +28,28 @@ class Admin::PagesController < ApplicationController
     end
   end
 
-  # def edit
-  # end
+  def edit
+    @webbook = Webbook.find_by(id: params[:webbook_id])
+    @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
+  end
+
+  def update
+    @webbook = Webbook.find_by(id: params[:webbook_id])
+    @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
+    if @page.update(page_params)
+      flash[:success] = "WEBブックを更新しました"
+      redirect_to admin_webbook_pages_path
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @webbook = Webbook.find_by(id: params[:webbook_id])
+    @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
+    @page.destroy
+    redirect_to admin_webbook_pages_path, notice: "削除しました"
+  end
 
   private
 
