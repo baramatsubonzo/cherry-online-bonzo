@@ -10,9 +10,10 @@ class ChargesController < ApplicationController
 
     @stripe_form = StripeForm.new(params[:stripeEmail], params[:stripeToken], @webbook)
     @stripe_form.save!
+    binding.pry
 
     @purchase_history_webbooks = PurchaseHistoryWebbook.new
-    @purchase_history_webbooks.add_purchase_history(current_user, params[:purchase_history_id], @webbook.id)
+    @purchase_history_webbooks.add_purchase_history(current_user, params[:purchase_history_id], @webbook.id, @stripe_form.charge[:id])
 
     PurchaseMailer.creation_email(current_user).deliver_now
     redirect_to webbook_path(params[:id]), notice: "商品を購入しました！"

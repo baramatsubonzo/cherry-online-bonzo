@@ -1,7 +1,7 @@
 class StripeForm
   include ActiveModel::Model
 
-  attr_accessor :email, :source, :user
+  attr_accessor :email, :source, :user, :charge
 
   def initialize(email, source, webbook)
     @email = email
@@ -15,7 +15,7 @@ class StripeForm
       source: @source,
     })
   
-    charge = Stripe::Charge.create({
+    @charge = Stripe::Charge.create({
         customer: customer.id,
         amount: @webbook.price,
         description: "商品名: #{@webbook.title}",

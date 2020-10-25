@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_23_062801) do
+ActiveRecord::Schema.define(version: 2020_10_25_141209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_10_23_062801) do
     t.bigint "webbook_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "charge_id"
     t.index ["purchase_history_id"], name: "index_purchase_history_webbooks_on_purchase_history_id"
     t.index ["webbook_id"], name: "index_purchase_history_webbooks_on_webbook_id"
   end
