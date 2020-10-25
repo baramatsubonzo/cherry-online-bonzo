@@ -70,6 +70,7 @@ GEM
     ast (2.4.1)
     autoprefixer-rails (10.0.1.0)
       execjs
+    bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
@@ -190,6 +191,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redcarpet (3.5.0)
     regexp_parser (1.8.1)
     rexml (3.2.4)
     rspec-core (3.9.3)
@@ -256,6 +258,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (5.28.0)
     sysexits (1.2.0)
     temple (0.8.2)
     thor (1.0.1)
@@ -282,6 +285,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   bootstrap
   byebug
@@ -295,11 +299,13 @@ DEPENDENCIES
   pry-rails
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
+  redcarpet
   rspec-rails
   sass-rails (>= 6)
   sgcop!
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe
   tzinfo-data
   web-console (>= 3.3.0)
   webpacker (~> 4.0)

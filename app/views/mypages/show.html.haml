@@ -1,0 +1,19 @@
+%h2 Top Page
+
+.card-group
+  -@webbooks.each do |webbook|
+    .col-md-4{style: "margin-bottom: 30px"}
+      .card
+        .row.no-gutters
+          .col-md-6
+            .bd-placeholder-img
+              = image_tag webbook.image.variant(resize_to_fit: [160, 160]) if webbook.image.attached?
+          .col-md-6
+            .card-body
+              .card-title
+                %h5= webbook.title
+              .card-text
+                %p= webbook.author
+              .card-text
+                // TODO: ここのpageのidの渡し方を変えてあげる
+                %p= link_to "この本を読む", webbook_page_path(webbook.id, 1), class: 'btn btn-primary'

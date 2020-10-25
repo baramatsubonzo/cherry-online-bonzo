@@ -1,0 +1,15 @@
+.row
+  .col-2
+    = render 'admin/pages/sidebar'
+  
+  .col-10
+    %h1 WEBブックページの新規作成画面
+
+    = form_with model: @page, url: admin_webbook_page_path(params[:webbook_id], params[:id]), local: true do |f|
+      .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
+      .form-group
+        = f.label :content
+        = f.text_area :content, rows: 5, class: 'form-control'
+      = f.submit "更新する", class: 'btn btn-primary'

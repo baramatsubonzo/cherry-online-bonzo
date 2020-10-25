@@ -1,0 +1,12 @@
+%h1 ユーザーログイン
+
+= form_with scope: :session, local: true do |f|
+  .form-group
+    = f.label :email
+    = f.text_field :email, class: 'form-control'
+  .form-group
+    = f.label :password
+    = f.text_field :password
+  = f.submit "ログインする", class: 'btn btn-primary'
+
+= link_to '新規登録はこちら', signup_path, class: 'nav-link'

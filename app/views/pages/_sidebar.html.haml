@@ -1,0 +1,4 @@
+%h3 ページ一覧
+- @webbook.pages.each do |page|
+  %ul
+    %li= link_to "#{page.title}", webbook_page_path(@webbook, page)

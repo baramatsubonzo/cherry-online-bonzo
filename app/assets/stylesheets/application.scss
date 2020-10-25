@@ -1,1 +1,6 @@
 @import "bootstrap";
+
+// リストの黒丸を削除する
+ul {
+  list-style: none;
+}
