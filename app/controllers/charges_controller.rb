@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
   before_action :prevent_duouble_purchase, only: [:create]
+  before_action :release_date_came?, only: [:create]
 
   def new
   end
@@ -28,5 +29,10 @@ class ChargesController < ApplicationController
       .purchase_history_webbooks
       .find_by(webbook_id: params[:id])
       .present?
+  end
+
+  def release_date_came?
+    @webbook = Webbook.find(params[:id])
+    redirect_to root_path, notice: "発売日前の商品です" if @webbook.release_date > Date.today
   end
 end
