@@ -12,7 +12,7 @@
         %p= "#{@webbook.release_date}発売"
         %h4= "#{@webbook.price}円"
         // カート機能を作成後、リンクを追加する
-        = button_to 'カートに入れる', add_webbook_path(webbook_id: @webbook.id), method: :post, class: 'btn btn-primary mr-3'
+        = button_to 'カートに入れる', add_webbook_requests_path(webbook_id: @webbook.id), method: :post, class: 'btn btn-primary mr-3'
     .card-body
       %h5= "説明"
       %p= @webbook.description

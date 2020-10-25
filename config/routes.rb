@@ -23,8 +23,7 @@ Rails.application.routes.draw do
 
   resources :carts, only:[:show]
 
-  post '/add_webbook' => 'carts#add_webbook'
-  delete '/delete_webbook' => 'carts#delete_webbook'
+  resources :add_webbook_requests, only:[:create, :destroy]
 
   # resources :charges
   post "carts/:id/charge", to: "charges#create", as: "charges"
