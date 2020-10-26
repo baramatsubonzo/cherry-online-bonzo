@@ -1,10 +1,6 @@
 class PagesController < ApplicationController
-  before_action :set_webbook, only:[:index, :show]
+  before_action :set_webbook, only:[:show]
   before_action :validate_read_webbook, only:[:show]
-
-  def index
-    @pages = @webbook.pages
-  end
 
   def show
     @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
