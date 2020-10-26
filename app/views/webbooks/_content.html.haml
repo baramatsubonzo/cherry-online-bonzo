@@ -1,0 +1,16 @@
+.card.mb-3
+  .row.no-gutters
+    .col-md-6
+      .bd-placeholder-img{style: "margin-bottom: 30px"}
+        = image_tag @webbook.image.variant(resize_to_fit: [500, 500]) if @webbook.image.attached?
+    .col-md-6
+      .card-body
+        %h2= @webbook.title
+        %p= @webbook.author
+        %p= "#{@webbook.release_date}発売"
+        %h4= "#{@webbook.price}円"
+    .card-body
+      %h5= "説明"
+      %p= @webbook.description
+    .card-body
+      %h5= "目次"
