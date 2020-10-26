@@ -1,0 +1,14 @@
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Webブックのタイトル
+      %th 購入金額
+      %th 購入したユーザーのメールアドレス
+      %th 購入したユーザーの氏名
+      %th 購入日時
+      %th Stripeの決済ID
+      
+  %tbody
+    - @pages.each do |page|
+      %tr
+        %td= page.title

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   resources :add_webbook_requests, only:[:create, :destroy]
 
+  resource :purchase_histories, only:[:index]
+
   # resources :charges
   post "carts/:id/charge", to: "charges#create", as: "charges"
 end
