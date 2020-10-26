@@ -1,12 +1,12 @@
 class Admin::WebbooksController < ApplicationController
   before_action :require_admin
+  before_action :set_webbook, only:[:show, :edit, :update, :destroy]
 
   def index
     @webbooks = Webbook.all
   end
 
   def show
-    @webbook = Webbook.find(params[:id])
   end
 
   def new
@@ -24,11 +24,9 @@ class Admin::WebbooksController < ApplicationController
   end
 
   def edit
-    @webbook = Webbook.find(params[:id])
   end
 
   def update
-    @webbook = Webbook.find(params[:id])
     if @webbook.update(webbook_params)
       flash[:success] = "WEBブックを更新しました"
       redirect_to admin_root_url
@@ -38,6 +36,8 @@ class Admin::WebbooksController < ApplicationController
   end
 
   def destroy
+    @webbook.destroy
+    redirect_to admin_root_path, notice: "削除しました"
   end
 
   private
@@ -49,5 +49,9 @@ class Admin::WebbooksController < ApplicationController
 
   def require_admin
     redirect_to root_path unless current_user.admin?
+  end
+
+  def set_webbook
+    @webbook = Webbook.find(params[:id])
   end
 end
