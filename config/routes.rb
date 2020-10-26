@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :webbooks do
       resources :pages
     end
+    resources :purchase_histories, only:[:index]
   end
 
   resource :mypage, only:[:show]
