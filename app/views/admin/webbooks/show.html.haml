@@ -11,14 +11,11 @@
         %p= @webbook.author
         %p= "#{@webbook.release_date}発売"
         %h4= "#{@webbook.price}円"
-        // カート機能を作成後、リンクを追加する
     .card-body
       %h5= "説明"
       %p= @webbook.description
     .card-body
-      // 後で、ページと目次の実装は追加する
       %h5= "目次"
-// ユーザー画面からは見えないようにする
 = link_to '編集', edit_admin_webbook_path, class: 'btn btn-primary mr-3'
 = link_to '削除', admin_webbook_path, method: :delete, data: {confirm: "タスク「#{@webbook.title}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
 = link_to 'ページを作成する', new_admin_webbook_page_path(params[:id])

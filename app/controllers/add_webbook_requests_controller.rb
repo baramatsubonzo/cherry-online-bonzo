@@ -5,7 +5,7 @@ class AddWebbookRequestsController < ApplicationController
     end
 
     @cart_webbook.save
-    # todo: 後でわかりやすく変更する
+
     redirect_to current_cart
   end
 
