@@ -4,12 +4,4 @@
   
   .col-10
     %h1 WEBブックページの新規作成画面
-
-    = form_with model: @page, url: admin_webbook_pages_path, local: true do |f|
-      .form-group
-        = f.label :title
-        = f.text_field :title, class: 'form-control'
-      .form-group
-        = f.label :content
-        = f.text_area :content, rows: 5, class: 'form-control'
-      = f.submit "作成する", class: 'btn btn-primary'
+    = render partial: 'form', locals: { model: @page, url: admin_webbook_pages_path }
