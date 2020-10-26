@@ -11,13 +11,13 @@ class UsersController < ApplicationController
     if @user.save
       @cart = @user.create_cart
       @purchase_history = @user.create_purchase_history
-      
+
       log_in @user
 
       if @user.admin == true
-        redirect_to admin_webbooks_path, notice: "ユーザー「#{@user.email}を登録しました」"
+        redirect_to admin_webbooks_path, notice: "ユーザー「#{@user.name}を登録しました」"
       else
-        redirect_to root_path, notice: "ユーザー「#{@user.email}を登録しました」"
+        redirect_to root_path, notice: "ユーザー「#{@user.name}を登録しました」"
       end
     else
       render :new
@@ -27,6 +27,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
