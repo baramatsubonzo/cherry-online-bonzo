@@ -8,6 +8,7 @@ require("@rails/activestorage").start()
 require("channels")
 require('jquery')
 require("jquery-ui/ui/widgets/sortable")
+require("table_sort.js")
 
 import "bootstrap"
 import "bootstrap/scss/bootstrap.scss"
