@@ -1,11 +1,11 @@
-%table.table.table-bordered
+%table.table.table-bordered.table-sortable
   %thead
     %tr
       %th タイトル
       
   %tbody
     - @pages.each do |page|
-      %tr
+      %tr.item{data = { model_name: page.class.name.underscore, update_url: admin_webbook_page_sort_path(page, @webbook) }}
         %td= page.title
 
     = link_to 'ページを作成する', new_admin_webbook_page_path
