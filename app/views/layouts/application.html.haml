@@ -6,6 +6,8 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
+    %script{:src => 'https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'}
+    %script{:src => 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'}
     = javascript_pack_tag 'application'
   %body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
