@@ -4,7 +4,7 @@ class Admin::PagesController < ApplicationController
   before_action :set_page, only:[:show, :edit, :update, :destroy]
 
   def index
-    @pages = @webbook.pages
+    @pages = @webbook.pages.rank(:row_order)
   end
 
   def show
