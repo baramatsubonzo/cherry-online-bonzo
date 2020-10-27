@@ -41,11 +41,18 @@ class Admin::PagesController < ApplicationController
     redirect_to admin_webbook_pages_path, notice: "削除しました"
   end
 
+  def sort
+    @webbook = Webbook.find(params[:webbook_id])
+    @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
+    @page.update(page_params)
+    render nothing: true
+  end
+
   private
 
   def page_params
     params.require(:page)
-          .permit(:title, :content)
+          .permit(:title, :content, :raw_order_position)
   end
 
   def require_admin

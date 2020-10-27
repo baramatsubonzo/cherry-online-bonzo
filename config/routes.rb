@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root "webbooks#index"
     resources :webbooks do
-      resources :pages
+      resources :pages do
+        put :sort
+      end
     end
     resources :purchase_histories, only:[:index]
   end
