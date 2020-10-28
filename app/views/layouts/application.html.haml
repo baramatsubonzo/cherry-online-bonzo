@@ -19,6 +19,8 @@
           %li.nav-item=link_to 'Top', root_path, class: 'nav-link'
           %li.nav-item=link_to 'MyPage', mypage_path, class: 'nav-link'          
           %li.nav-item=link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+          - if current_user.admin?
+            %li.nav-item=link_to '管理者ページTop', admin_root_path, class: 'nav-link'
         - else
           %li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
     .row
