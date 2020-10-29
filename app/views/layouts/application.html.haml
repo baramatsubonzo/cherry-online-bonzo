@@ -17,7 +17,8 @@
       %ul.navbar-nav.ml-auto
         - if current_user
           %li.nav-item=link_to 'Top', root_path, class: 'nav-link'
-          %li.nav-item=link_to 'MyPage', mypage_path, class: 'nav-link'          
+          %li.nav-item=link_to 'MyPage', mypage_path, class: 'nav-link'
+          %li.nav-item=link_to 'カートを見る', cart_path(current_user.id), class: 'nav-link'        
           %li.nav-item=link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
           - if current_user.admin?
             %li.nav-item=link_to '管理者ページTop', admin_root_path, class: 'nav-link'
