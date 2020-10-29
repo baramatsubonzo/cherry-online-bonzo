@@ -3,12 +3,24 @@ require 'rails_helper'
 RSpec.describe "Webbook", type: :system do
   describe 'ユーザーはトップページでWebブックの一覧を閲覧できる' do
     context 'ユーザーがログインしている時' do
-      it 'トップページへリダイレクトされる' do
+      before do
+        FactoryBot.create(:user)
+        visit login_path
+        fill_in 'メールアドレス', with: 'user_1@sample.com'
+        fill_in 'パスワード', with: 'password'
+        click_button 'ログインする'
+      end
+      it 'Webbook一覧が見れる' do
+        expect(page).to have_content("ユーザー用Top Page")
       end
     end
 
-    cotext 'ユーザーがログインしていない時' do
+    context 'ユーザーがログインしていない時' do
+      before do
+        visit root_path
+      end
       it 'ログイン画面へリダイレクトされる' do
+        expect(page).to have_content("ユーザーログイン")
       end
     end
   end
@@ -19,7 +31,7 @@ RSpec.describe "Webbook", type: :system do
       end
     end
 
-    cotext 'ユーザーがログインしていない時' do
+    context 'ユーザーがログインしていない時' do
       it 'ログイン画面へリダイレクトされる' do
       end
     end
@@ -31,7 +43,7 @@ RSpec.describe "Webbook", type: :system do
       end
     end
 
-    cotext 'ユーザーBがログインしている時' do
+    context 'ユーザーBがログインしている時' do
       it 'ユーザーAの購入したWebブックが表示されない' do
       end
     end
@@ -43,7 +55,7 @@ RSpec.describe "Webbook", type: :system do
       end
     end
 
-    cotext 'ユーザーBがログインしている時' do
+    context 'ユーザーBがログインしている時' do
       it 'ユーザーAの購入したWebブックのページが表示されない' do
       end
     end

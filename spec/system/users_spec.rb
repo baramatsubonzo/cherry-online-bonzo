@@ -25,7 +25,7 @@ RSpec.describe "ユーザー", type: :system do
           click_button 'ログインする'
         end
         it 'トップページが表示される' do
-          expect(page).to have_content 'Top Page'
+          expect(page).to have_content 'ユーザー用Top Page'
         end
       end
     end
