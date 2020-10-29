@@ -63,7 +63,7 @@ RSpec.describe "Admin#Webbook", type: :system do
   end
 
   describe 'Webbook#edit' do
-    let(:webbook_a) { FactoryBot.create(:webbook) }
+    let!(:webbook_a) { FactoryBot.create(:webbook) }
 
     describe '管理者の場合Webbook#editが表示される' do
       context '管理者の場合' do
@@ -126,13 +126,32 @@ RSpec.describe "Admin#Webbook", type: :system do
 
   describe 'Webbook#destroy' do
     describe 'Webbookを削除することができる' do
+      let!(:webbook_a) { FactoryBot.create(:webbook) }
+
+      before do
+        FactoryBot.create(:admin_user)
+        visit login_path
+        fill_in 'メールアドレス', with: 'admin@sample.com'
+        fill_in 'パスワード', with: 'password'
+        click_button 'ログインする'
+
+        visit admin_webbook_path(webbook_a.id)
+
+        click_link '削除'
+      end
       context 'Webbookが削除される' do
+        it '管理者トップ画面へ遷移する' do
+          expect(page.driver.browser.switch_to.alert.text).to eq "「#{webbook_a.title}」を削除します。よろしいですか？"
+          page.driver.browser.switch_to.alert.accept
+          expect(page).to have_current_path admin_root_path
+        end
+
         it 'Webbookのレコードが1つ減っている' do
         end
       end
 
-      context 'Webbookが削除されない' do
-      end
+      # context 'Webbookが削除されない' do
+      # end
     end
   end
 end
