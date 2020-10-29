@@ -9,12 +9,12 @@ RSpec.describe "ユーザー", type: :system do
           FactoryBot.create(:admin_user)
           # 管理者ユーザーでログインしておく
           visit login_path
-          fill_in 'Email', with: 'admin@sample.com'
-          fill_in 'Password', with: 'password'
+          fill_in 'メールアドレス', with: 'admin@sample.com'
+          fill_in 'パスワード', with: 'password'
           click_button 'ログインする'
         end
         it '管理者トップページが表示される' do
-          expect(page).to have_content '管理者トップページ'
+          expect(page).to have_content '管理者用トップページ'
         end
       end
       context '管理者の場合' do
