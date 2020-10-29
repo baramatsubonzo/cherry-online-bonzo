@@ -30,6 +30,5 @@ Rails.application.routes.draw do
 
   resource :purchase_histories, only:[:index]
 
-  # resources :charges
-  post "carts/:id/charge", to: "charges#create", as: "charges"
+  post "carts/:id/purchase", to: "purchases#create", as: "purchases"
 end

@@ -11,7 +11,7 @@
           %p= cart_webbook.webbook.author
           %h4= "#{cart_webbook.webbook.price}円"
           = link_to '削除', add_webbook_request_path(webbook_id: cart_webbook.webbook.id), method: :delete, class: "btn btn-xs btn-danger", data: {confirm: 'カートから削除してよろしいですか？'}
-          = form_tag charges_path(cart_webbook.webbook) do
+          = form_tag purchases_path(cart_webbook.webbook) do
             %article
               - if flash[:error].present?
                 #error_explanation

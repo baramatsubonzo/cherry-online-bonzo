@@ -1,4 +1,4 @@
-class ChargesController < ApplicationController
+class PurchasesController < ApplicationController
   before_action :prevent_duouble_purchase, only: [:create]
   before_action :release_date_came?, only: [:create]
 
