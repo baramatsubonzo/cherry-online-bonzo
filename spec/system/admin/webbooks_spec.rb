@@ -63,8 +63,9 @@ RSpec.describe "Admin#Webbook", type: :system do
   end
 
   describe 'Webbook#edit' do
+    let(:webbook_a) { FactoryBot.create(:webbook) }
+
     describe '管理者の場合Webbook#editが表示される' do
-      let(:webbook_a) { FactoryBot.create(:webbook) }
       context '管理者の場合' do
         before do
           FactoryBot.create(:admin_user)
@@ -98,7 +99,23 @@ RSpec.describe "Admin#Webbook", type: :system do
 
     describe 'Webbookを編集することができる' do
       context 'Webbookが変更される' do
-        it 'Webbookのレコードが変更される' do
+        before do
+          FactoryBot.create(:admin_user)
+          visit login_path
+          fill_in 'メールアドレス', with: 'admin@sample.com'
+          fill_in 'パスワード', with: 'password'
+          click_button 'ログインする'
+  
+          visit edit_admin_webbook_path(webbook_a.id)
+          fill_in 'Title', with: 'fugafuga'
+          click_button '送信'
+        end
+
+        # it 'Webbookのレコードが変更される' do
+        #   expect(webbook_a.title).to eq "fugafuga"
+        # end
+        it '管理者用Top Pageが表示される' do
+          expect(page).to have_current_path admin_root_path
         end
       end
 
