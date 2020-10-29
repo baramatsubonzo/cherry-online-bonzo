@@ -9,8 +9,11 @@
         %p= @webbook.author
         %p= "#{@webbook.release_date}発売"
         %h4= "#{@webbook.price}円"
+        %p= "#{@webbook.pages.count}頁"
     .card-body
       %h5= "説明"
-      %p= @webbook.description
+      %p= markdown(@webbook.description)
     .card-body
       %h5= "目次"
+      - @webbook.pages.each do |page|
+        %p= page.title
