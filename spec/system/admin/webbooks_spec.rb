@@ -4,12 +4,32 @@ RSpec.describe "Admin#Webbook", type: :system do
   describe 'Webbook#new' do
     describe '管理者の場合Webbook#newが表示される' do
       context '管理者の場合' do
+        before do
+          FactoryBot.create(:admin_user)
+          visit login_path
+          fill_in 'メールアドレス', with: 'admin@sample.com'
+          fill_in 'パスワード', with: 'password'
+          click_button 'ログインする'
+  
+          visit new_admin_webbook_path
+        end
         it 'webbook作成ページが表示される' do
+          expect(page).to have_current_path new_admin_webbook_path
         end
       end
 
       context 'ユーザーの場合' do
+        before do
+          FactoryBot.create(:user)
+          visit login_path
+          fill_in 'メールアドレス', with: 'user_1@sample.com'
+          fill_in 'パスワード', with: 'password'
+          click_button 'ログインする'
+  
+          visit new_admin_webbook_path
+        end
         it 'トップページへリダイレクトされる' do
+          expect(page).to have_current_path root_path
         end
       end
     end
