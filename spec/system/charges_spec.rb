@@ -14,4 +14,12 @@ RSpec.describe "Webbookを購入する", type: :system do
       end
     end
   end
+
+  describe '発売日がまだ来ていないWebブックは購入できない' do
+    context '発売日が今日より後の場合(購入できない)' do
+    end
+
+    context '発売日が今日より前の場合(購入できる)' do
+    end
+  end
 end
