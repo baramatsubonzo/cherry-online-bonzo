@@ -27,7 +27,18 @@ RSpec.describe "Webbook", type: :system do
 
   describe 'ユーザーは一覧からWebブックを選択し、その本の基本情報やページ数、目次などを確認できる' do
     context 'ユーザーがログインしている時' do
-      it 'トップページへリダイレクトされる' do
+      let(:webbook) { FactoryBot.create(:webbook) }
+      before do
+        FactoryBot.create(:user)
+        visit login_path
+        fill_in 'メールアドレス', with: 'user_1@sample.com'
+        fill_in 'パスワード', with: 'password'
+        click_button 'ログインする'
+        visit webbook_path(webbook)
+      end
+
+      it '詳細ページが表示される' do
+        expect(page).to have_content("最初の本")
       end
     end
 
