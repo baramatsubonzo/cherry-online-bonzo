@@ -44,7 +44,7 @@ RSpec.describe "Admin#Webbook", type: :system do
           click_button 'ログインする'
   
           visit new_admin_webbook_path
-          fill_in 'Title', with: 'hogehoge'
+          fill_in 'タイトル', with: 'hogehoge'
           click_button '送信'
         end
 
@@ -107,7 +107,7 @@ RSpec.describe "Admin#Webbook", type: :system do
           click_button 'ログインする'
   
           visit edit_admin_webbook_path(webbook_a.id)
-          fill_in 'Title', with: 'fugafuga'
+          fill_in 'タイトル', with: 'fugafuga'
           click_button '送信'
         end
 
