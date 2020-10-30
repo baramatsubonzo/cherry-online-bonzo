@@ -4,3 +4,5 @@
     %h2= @page.title
   .card-body
     %p= markdown(@page.content)
+    - if @page.page_number == 1
+      = image_tag @webbook.image.variant(resize_to_fit: [500, 500]) if @webbook.image.attached?

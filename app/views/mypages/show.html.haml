@@ -15,5 +15,4 @@
               .card-text
                 %p= webbook.author
               .card-text
-                // TODO: ここのpageのidの渡し方を変えてあげる
-                %p= link_to "この本を読む", webbook_page_path(webbook.id, 1), class: 'btn btn-primary'
+                %p= link_to "この本を読む", webbook_page_path(webbook.id, webbook.pages.ids.first), class: 'btn btn-primary'

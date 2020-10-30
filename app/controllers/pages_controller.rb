@@ -3,14 +3,15 @@ class PagesController < ApplicationController
   before_action :validate_read_webbook, only:[:show]
 
   def show
-    @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
+    @webbook = Webbook.find_by(id: params[:webbook_id])
+    @page = Page.where(webbook_id: params[:webbook_id]).find_by(id: params[:id])
   end
 
   private
 
   def page_params
     params.require(:page)
-          .permit(:title, :content)
+          .permit(:title, :content, :page_number)
   end
 
   def user_has_book?

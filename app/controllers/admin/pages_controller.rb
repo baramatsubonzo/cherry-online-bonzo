@@ -15,7 +15,7 @@ class Admin::PagesController < ApplicationController
   end
 
   def create
-    @page = Page.new(page_params.merge(webbook_id: params[:webbook_id]))
+    @page = Page.new(page_params.merge(webbook_id: params[:webbook_id], page_number: Webbook.find_by(id: params[:webbook_id]).pages.last.page_number + 1))
     if @page.save
       flash[:success] = "新しいページを作成しました"
       redirect_to admin_webbook_pages_path

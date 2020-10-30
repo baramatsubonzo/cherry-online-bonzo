@@ -17,7 +17,8 @@ class Admin::WebbooksController < ApplicationController
     @webbook = Webbook.new(webbook_params)
     if @webbook.save
       flash[:success] = "新しいWEBブックを作成しました"
-      redirect_to admin_root_url
+      @page = @webbook.pages.create(webbook_id: @webbook.id, title: "表紙: #{@webbook.title}", content: "こちら表紙です", page_number: 1)
+      redirect_to admin_webbook_url(@webbook.id)
     else
       render 'new'
     end
