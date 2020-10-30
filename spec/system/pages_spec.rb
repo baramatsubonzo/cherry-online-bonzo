@@ -1,58 +1,52 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe "Webbook", type: :system do
-#   describe 'ユーザーはトップページでWebブックの一覧を閲覧できる' do
-#     context 'ユーザーがログインしている時' do
-#       it 'トップページへリダイレクトされる' do
-#       end
-#     end
+RSpec.describe "Page", type: :system do
+  describe 'ユーザーは購入しているWebブック#Pageを確認できる' do
+    context '購入履歴がある場合' do
+      let(:user_a) { FactoryBot.create(:user) }
+      let(:webbook_a) { FactoryBot.create(:webbook) }
+      let(:page_a) { FactoryBot.create(:page, webbook_id: webbook_a.id) }
+      let(:purchase_history) { FactoryBot.create(:purchase_history, user: user_a) }
+      let!(:purchase_history_webbook) { FactoryBot.create(:purchase_history_webbook, purchase_history: purchase_history, webbook: webbook_a) }
 
-#     cotext 'ユーザーがログインしていない時' do
-#       it 'ログイン画面へリダイレクトされる' do
-#       end
-#     end
-#   end
+      before do
+        visit login_path
+        fill_in 'メールアドレス', with: 'user_1@sample.com'
+        fill_in 'パスワード', with: 'password'
+        click_button 'ログインする'
 
-#   describe 'ユーザーは一覧からWebブックを選択し、その本の基本情報やページ数、目次などを確認できる' do
-#     context 'ユーザーがログインしている時' do
-#       it 'トップページへリダイレクトされる' do
-#       end
-#     end
+        visit webbook_page_path(webbook_a.id, page_a)
+      end
 
-#     cotext 'ユーザーがログインしていない時' do
-#       it 'ログイン画面へリダイレクトされる' do
-#       end
-#     end
-#   end
+      it 'ユーザーAが購入したWebブックが表示される' do
+        expect(page).to have_content("最初の頁")
+      end
+    end
 
-#   describe 'ユーザーはマイページで購入したWebブックの一覧を閲覧できる' do
-#     context 'ユーザーAがログインしている時' do
-#       it 'ユーザーAが購入したWebブックが表示される' do
-#       end
-#     end
+    context '購入履歴がない場合' do
+      let(:user_a) { FactoryBot.create(:user) }
+      let(:webbook_a) { FactoryBot.create(:webbook) }
+      let(:page_a) { FactoryBot.create(:page, webbook_id: webbook_a.id) }
+      let(:purchase_history) { FactoryBot.create(:purchase_history, user: user_a) }
+      let!(:purchase_history_webbook) { FactoryBot.create(:purchase_history_webbook, purchase_history: purchase_history, webbook: webbook_a) }
 
-#     cotext 'ユーザーBがログインしている時' do
-#       it 'ユーザーAの購入したWebブックが表示されない' do
-#       end
-#     end
-#   end
+      let(:user_b) { FactoryBot.create(:user, name: 'ほげほげ',email: "hogehoge@sample.com") }
+      let(:webbook_b) { FactoryBot.create(:webbook, title: "hogehoge") }
+      let(:purchase_history) { FactoryBot.create(:purchase_history, user: user_b) }
+      let!(:purchase_history_webbook) { FactoryBot.create(:purchase_history_webbook, purchase_history: purchase_history, webbook: webbook_b) }
 
-#   describe 'ユーザーはマイページで購入したWebブックのページを閲覧できる' do
-#     context 'ユーザーAがログインしている時' do
-#       it 'ユーザーAが購入したWebブックのページが表示される' do
-#       end
-#     end
+      before do
+        visit login_path
+        fill_in 'メールアドレス', with: user_b.email
+        fill_in 'パスワード', with: user_b.password
+        click_button 'ログインする'
 
-#     cotext 'ユーザーBがログインしている時' do
-#       it 'ユーザーAの購入したWebブックのページが表示されない' do
-#       end
-#     end
-#   end
+        visit webbook_page_path(webbook_a.id, page_a)
+      end
 
-#   describe '公開フラグがfalseだとエンドユーザーにWebブックが公開されない' do
-#     context '公開フラグがtrueの場合' do
-#     end
-#     context '公開フラグがfalseの場合' do
-#     end
-#   end
-# end
+      it 'トップ画面に飛ばされる' do
+        expect(page).to have_current_path root_path
+      end
+    end
+  end
+end
