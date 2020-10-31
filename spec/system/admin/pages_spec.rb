@@ -131,12 +131,27 @@ RSpec.describe "Admin#Page", type: :system do
   describe 'page#destroy' do
     describe 'pageを削除することができる' do
       context 'pageが削除される' do
+        let!(:page_a) { FactoryBot.create(:page,  title: 'hoge', content: 'fuga') }
+        before do
+          FactoryBot.create(:admin_user)
+          visit login_path
+          fill_in 'メールアドレス', with: 'admin@sample.com'
+          fill_in 'パスワード', with: 'password'
+          click_button 'ログインする'
+
+          visit admin_webbook_page_path(page_a.webbook_id, page_a.id)
+
+          click_link '削除'
+          expect(page.driver.browser.switch_to.alert.text).to eq "「#{page_a.title}」を削除します。よろしいですか？"
+          page.driver.browser.switch_to.alert.accept
+        end
         it 'pageのレコードが1つ減っている' do
+          expect(page).to have_content("削除しました")
         end
       end
 
-      context 'pageが削除されない' do
-      end
+      # context 'pageが削除されない' do
+      # end
     end
   end
 end
