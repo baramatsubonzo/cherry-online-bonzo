@@ -66,25 +66,65 @@ RSpec.describe "Admin#Page", type: :system do
 
   describe 'page#edit' do
     describe '管理者の場合page#editが表示される' do
+      let(:webbook_a){FactoryBot.create(:webbook)}
       context '管理者の場合' do
+        before do
+          FactoryBot.create(:admin_user)
+          visit login_path
+          fill_in 'メールアドレス', with: 'admin@sample.com'
+          fill_in 'パスワード', with: 'password'
+          click_button 'ログインする'
+  
+          visit edit_admin_webbook_path(webbook_a.id)
+        end
         it 'page編集が表示される' do
+          expect(page).to have_current_path edit_admin_webbook_path(webbook_a.id)
         end
       end
 
       context 'ユーザーの場合' do
+        before do
+          FactoryBot.create(:user)
+          visit login_path
+          fill_in 'メールアドレス', with: 'user_1@sample.com'
+          fill_in 'パスワード', with: 'password'
+          click_button 'ログインする'
+  
+          visit edit_admin_webbook_path(webbook_a.id)
+        end
         it 'トップページへリダイレクトされる' do
+          expect(page).to have_current_path root_path
         end
       end
     end
     
     describe 'pageを編集することができる' do
       context 'pageが変更される' do
-        it 'pageのレコードが変更される' do
+        # let!(:webbook_a){FactoryBot.create(:webbook)}
+        let!(:page_a) { FactoryBot.create(:page,  title: 'hoge', content: 'fuga') }
+        context 'pageが追加される' do
+          before do
+            FactoryBot.create(:admin_user)
+            visit login_path
+            fill_in 'メールアドレス', with: 'admin@sample.com'
+            fill_in 'パスワード', with: 'password'
+            click_button 'ログインする'
+
+            visit edit_admin_webbook_page_path(page_a.webbook_id, page_a.id)
+            fill_in 'Title', with: 'テストタイトル'
+            fill_in 'Content', with: '最高のコンテンツ'
+            click_button '送信'
+          end
+          # RFC: 画面上は、テストタイトルに変更されているが、レコードが変更されることが確認できない。
+          # テストとしてどう書くのが適切だろう
+          it 'pageのレコードが変更される' do
+            expect(page).to have_content "テストタイトル"
+          end
         end
       end
 
-      context 'pageが変更されない' do
-      end
+      # context 'pageが変更されない' do
+      # end
     end
   end
 
