@@ -11,7 +11,7 @@ RSpec.describe "Webbook", type: :system do
         click_button 'ログインする'
       end
       it 'Webbook一覧が見れる' do
-        expect(page).to have_content("ユーザー用Top Page")
+        expect(page).to have_current_path root_path
       end
     end
 
@@ -20,7 +20,7 @@ RSpec.describe "Webbook", type: :system do
         visit root_path
       end
       it 'ログイン画面へリダイレクトされる' do
-        expect(page).to have_content("ユーザーログイン")
+        expect(page).to have_current_path login_path
       end
     end
   end
@@ -48,7 +48,7 @@ RSpec.describe "Webbook", type: :system do
         visit webbook_path(webbook)
       end
       it 'ログイン画面へリダイレクトされる' do
-        expect(page).to have_content("ユーザーログイン")
+        expect(page).to have_current_path login_path
       end
     end
   end

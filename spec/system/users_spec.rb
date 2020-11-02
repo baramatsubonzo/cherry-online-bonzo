@@ -12,7 +12,7 @@ RSpec.describe "ユーザー", type: :system do
           click_button 'ログインする'
         end
         it '管理者トップページが表示される' do
-          expect(page).to have_content '管理者用Top Page'
+          expect(page).to have_current_path admin_webbooks_path
         end
       end
 
@@ -25,7 +25,7 @@ RSpec.describe "ユーザー", type: :system do
           click_button 'ログインする'
         end
         it 'トップページが表示される' do
-          expect(page).to have_content 'ユーザー用Top Page'
+          expect(page).to have_current_path root_path
         end
       end
     end
@@ -39,7 +39,7 @@ RSpec.describe "ユーザー", type: :system do
       end
 
       it 'ログインページへリダイレクトされる' do
-        expect(page).to have_content 'ユーザーログイン'
+        expect(page).to have_current_path login_path
       end
     end
   end
