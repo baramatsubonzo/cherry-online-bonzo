@@ -61,6 +61,7 @@ RSpec.describe "Webbook", type: :system do
       let!(:purchase_history_webbook) { FactoryBot.create(:purchase_history_webbook, purchase_history: purchase_history, webbook: webbook_a) }
 
       before do
+        FactoryBot.create(:page, webbook_id: webbook_a.id)
         visit login_path
         fill_in 'メールアドレス', with: 'user_1@sample.com'
         fill_in 'パスワード', with: 'password'
@@ -81,6 +82,7 @@ RSpec.describe "Webbook", type: :system do
       let!(:purchase_history_webbook) { FactoryBot.create(:purchase_history_webbook, purchase_history: purchase_history, webbook: webbook_2) }
 
       before do
+        FactoryBot.create(:page, webbook_id: webbook_2.id)
         visit login_path
         fill_in 'メールアドレス', with: 'user_2@sample.com'
         fill_in 'パスワード', with: 'password'
