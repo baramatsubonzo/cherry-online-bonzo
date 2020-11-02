@@ -48,8 +48,8 @@ RSpec.describe "Admin#Page", type: :system do
           click_button 'ログインする'
   
           visit new_admin_webbook_page_path(webbook_a.id)
-          fill_in 'Title', with: 'テストタイトル'
-          fill_in 'Content', with: '最高のコンテンツ'
+          fill_in 'タイトル', with: 'テストタイトル'
+          fill_in 'コンテンツ', with: '最高のコンテンツ'
           click_button '送信'
         end
 
@@ -107,8 +107,8 @@ RSpec.describe "Admin#Page", type: :system do
             click_button 'ログインする'
 
             visit edit_admin_webbook_page_path(page_a.webbook_id, page_a.id)
-            fill_in 'Title', with: 'テストタイトル'
-            fill_in 'Content', with: '最高のコンテンツ'
+            fill_in 'タイトル', with: 'テストタイトル'
+            fill_in 'コンテンツ', with: '最高のコンテンツ'
             click_button '送信'
           end
           # RFC: 画面上は、テストタイトルに変更されているが、レコードが変更されることが確認できない。
