@@ -1,24 +1,17 @@
 class PagesController < ApplicationController
-  # TODO: 公開フラグがtrueの物だけに制限する
-  def index
-    @webbook = Webbook.find(params[:webbook_id])
-    @pages = @webbook.pages
-  end
+  before_action :set_webbook, only:[:show]
+  before_action :validate_read_webbook, only:[:show]
 
   def show
-    # FYI: 購入履歴になかったら、本を読めないように制限する
-    # binding.pry
     @webbook = Webbook.find_by(id: params[:webbook_id])
-    redirect_to root_path unless user_has_book?
-
-    @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
+    @page = Page.where(webbook_id: params[:webbook_id]).find_by(id: params[:id])
   end
 
   private
 
   def page_params
     params.require(:page)
-          .permit(:title, :content)
+          .permit(:title, :content, :page_number)
   end
 
   def user_has_book?
@@ -26,5 +19,13 @@ class PagesController < ApplicationController
       .purchase_history_webbooks
       .find_by(webbook_id: params[:webbook_id])
       .present?
+  end
+
+  def validate_read_webbook
+    redirect_to root_path unless user_has_book?
+  end
+
+  def set_webbook
+    @webbook = Webbook.find(params[:webbook_id])
   end
 end

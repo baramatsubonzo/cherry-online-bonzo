@@ -1,4 +1,4 @@
-%h2 管理者用トップページ
+%h2 管理者用Top Page
 
 .card-group
   -@webbooks.each do |webbook|
@@ -19,3 +19,4 @@
               .card-text
                 %h5= "#{webbook.price}円"
 = link_to '新しい本を追加する', new_admin_webbook_path, class: 'btn btn-primary mr-3'
+= link_to '購入履歴を確認する', admin_purchase_histories_path, class: 'btn btn-primary mr-3'

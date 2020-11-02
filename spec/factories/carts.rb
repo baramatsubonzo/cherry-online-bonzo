@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :cart do
-    user { nil }
+    user { FactoryBot.create(:user) }
   end
 end

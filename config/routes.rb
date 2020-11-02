@@ -2,23 +2,13 @@ Rails.application.routes.draw do
   namespace :admin do
     root "webbooks#index"
     resources :webbooks do
-      resources :pages
+      resources :pages do
+        put :sort
+      end
     end
+    resources :purchase_histories, only:[:index]
   end
 
-  post '/add_webbook' => 'carts#add_webbook'
-  delete '/delete_webbook' => 'carts#delete_webbook'
-
-  root "webbooks#index"
-  
-  resources :webbooks, only:[:index, :show] do
-    resources :pages, only:[:index, :show]
-  end
-
-  resources :carts, only:[:show]
-
-  # RFC: 今後管理者がユーザー一覧、詳細画面を見る可能性があると考えた。
-  # そのため、ユーザーが自分の情報を見るためには、mypageというリソースから閲覧することにする。
   resource :mypage, only:[:show]
   
   get 'signup', to: 'users#new'
@@ -28,6 +18,17 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  # resources :charges
-  post "carts/:id/charge", to: "charges#create", as: "charges"
+  root "webbooks#index"
+  
+  resources :webbooks, only:[:index, :show] do
+    resources :pages, only:[:index, :show]
+  end
+
+  resources :carts, only:[:show]
+
+  resources :add_webbook_requests, only:[:create, :destroy]
+
+  resource :purchase_histories, only:[:index]
+
+  post "carts/:id/purchase", to: "purchases#create", as: "purchases"
 end

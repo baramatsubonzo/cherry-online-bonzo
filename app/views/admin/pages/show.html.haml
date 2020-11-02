@@ -3,11 +3,7 @@
     = render 'admin/pages/sidebar'
   
   .col-10
-    %h2 Webブックの詳細ページ
-    .card.mb-3
-      .card-body
-        %h1= @page.title
-        %p= markdown(@page.content)
-    // ユーザー画面からは見えないようにする
+    = render 'pages/content'
+
     = link_to '編集', edit_admin_webbook_page_path, class: 'btn btn-primary mr-3'
-    = link_to '削除', admin_webbook_page_path, method: :delete, data: {confirm: "タスク「#{@page.title}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
+    = link_to '削除', admin_webbook_page_path, method: :delete, data: {confirm: "「#{@page.title}」を削除します。よろしいですか？"}, class: 'btn btn-danger'

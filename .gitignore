@@ -29,6 +29,7 @@
 /config/master.key
 
 # ignore
+/coverage
 .envrc
 .DS_Store
 vendor/bundle

@@ -6,6 +6,9 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/le-frog/jquery-ui.min.css'
+    %script{:src => 'https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'}
+    %script{:src => 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'}
     = javascript_pack_tag 'application'
   %body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
@@ -14,8 +17,11 @@
       %ul.navbar-nav.ml-auto
         - if current_user
           %li.nav-item=link_to 'Top', root_path, class: 'nav-link'
-          %li.nav-item=link_to 'MyPage', mypage_path, class: 'nav-link'          
+          %li.nav-item=link_to 'MyPage', mypage_path, class: 'nav-link'
+          %li.nav-item=link_to 'カートを見る', cart_path(current_user.id), class: 'nav-link'        
           %li.nav-item=link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+          - if current_user.admin?
+            %li.nav-item=link_to '管理者ページTop', admin_root_path, class: 'nav-link'
         - else
           %li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
     .row

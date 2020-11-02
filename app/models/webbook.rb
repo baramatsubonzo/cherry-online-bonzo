@@ -3,7 +3,8 @@ class Webbook < ApplicationRecord
 
   has_many :pages, dependent: :destroy
 
-  has_many :cart_webbooks
-  has_many :purchase_history_webbooks
+  has_many :cart_webbooks, dependent: :destroy
+  # memo: dependent: :destroyでいいのか。このやり方だと、purchase_history自体消えてしまうのではないか。
+  has_many :purchase_history_webbooks, dependent: :destroy
   has_many :purchase_history, through: :purchase_history_webbooks
 end
