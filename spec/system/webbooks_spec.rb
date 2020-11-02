@@ -54,18 +54,26 @@ RSpec.describe "Webbook", type: :system do
   end
 
   describe 'ユーザーはマイページで購入したWebブックの一覧を閲覧できる' do
+    let(:user_1) { FactoryBot.create(:user) }
+    let(:user_2) { FactoryBot.create(:user, email: 'user_2@sample.com') }
+    let(:webbook_a) { FactoryBot.create(:webbook) }
+    let(:webbook_b) { FactoryBot.create(:webbook, title: '2番目の本') }
+    let(:purchase_history) { FactoryBot.create(:purchase_history, user: login_user) }
+    let!(:purchase_history_webbook) { FactoryBot.create(:purchase_history_webbook, purchase_history: purchase_history, webbook: purchased_webbook) }
+
+    before do
+      visit login_path
+      fill_in 'メールアドレス', with: login_user.email
+      fill_in 'パスワード', with: login_user.password
+      click_button 'ログインする'
+    end
+
     context 'ユーザーAがログインしている時' do
-      let(:user_a) { FactoryBot.create(:user) }
-      let(:webbook_a) { FactoryBot.create(:webbook) }
-      let(:purchase_history) { FactoryBot.create(:purchase_history, user: user_a) }
-      let!(:purchase_history_webbook) { FactoryBot.create(:purchase_history_webbook, purchase_history: purchase_history, webbook: webbook_a) }
+      let(:login_user) { user_1 }
+      let(:purchased_webbook) { webbook_a }
 
       before do
         FactoryBot.create(:page, webbook_id: webbook_a.id)
-        visit login_path
-        fill_in 'メールアドレス', with: 'user_1@sample.com'
-        fill_in 'パスワード', with: 'password'
-        click_button 'ログインする'
 
         visit mypage_path
       end
@@ -76,17 +84,11 @@ RSpec.describe "Webbook", type: :system do
     end
 
     context 'ユーザーBがログインしている時' do
-      let(:user_2) { FactoryBot.create(:user, email: 'user_2@sample.com') }
-      let(:webbook_2) { FactoryBot.create(:webbook, title: '2番目の本') }
-      let(:purchase_history) { FactoryBot.create(:purchase_history, user: user_2) }
-      let!(:purchase_history_webbook) { FactoryBot.create(:purchase_history_webbook, purchase_history: purchase_history, webbook: webbook_2) }
+      let(:login_user) { user_2 }
+      let(:purchased_webbook) { webbook_b }
 
       before do
-        FactoryBot.create(:page, webbook_id: webbook_2.id)
-        visit login_path
-        fill_in 'メールアドレス', with: 'user_2@sample.com'
-        fill_in 'パスワード', with: 'password'
-        click_button 'ログインする'
+        FactoryBot.create(:page, webbook_id: webbook_b.id)
 
         visit mypage_path
       end
