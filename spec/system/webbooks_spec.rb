@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Webbook", type: :system do
+RSpec.describe 'Webbook', type: :system do
   describe 'ユーザーはトップページでWebブックの一覧を閲覧できる' do
     context 'ユーザーがログインしている時' do
       before do
@@ -10,6 +10,7 @@ RSpec.describe "Webbook", type: :system do
         fill_in 'パスワード', with: 'password'
         click_button 'ログインする'
       end
+
       it 'Webbook一覧が見れる' do
         expect(page).to have_current_path root_path
       end
@@ -19,6 +20,7 @@ RSpec.describe "Webbook", type: :system do
       before do
         visit root_path
       end
+
       it 'ログイン画面へリダイレクトされる' do
         expect(page).to have_current_path login_path
       end
@@ -39,7 +41,7 @@ RSpec.describe "Webbook", type: :system do
       end
 
       it '詳細ページが表示される' do
-        expect(page).to have_content("最初の本")
+        expect(page).to have_content('最初の本')
       end
     end
 
@@ -47,6 +49,7 @@ RSpec.describe "Webbook", type: :system do
       before do
         visit webbook_path(webbook)
       end
+
       it 'ログイン画面へリダイレクトされる' do
         expect(page).to have_current_path login_path
       end
@@ -79,7 +82,7 @@ RSpec.describe "Webbook", type: :system do
       end
 
       it 'ユーザーAが購入したWebブックが表示される' do
-        expect(page).to have_content("最初の本")
+        expect(page).to have_content('最初の本')
       end
     end
 
@@ -92,8 +95,9 @@ RSpec.describe "Webbook", type: :system do
 
         visit mypage_path
       end
+
       it 'ユーザーAの購入したWebブックが表示されない' do
-        expect(page).not_to have_content("最初の本")
+        expect(page).not_to have_content('最初の本')
       end
     end
   end

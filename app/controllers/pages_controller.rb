@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  before_action :set_webbook, only:[:show]
-  before_action :validate_read_webbook, only:[:show]
+  before_action :set_webbook, only: [:show]
+  before_action :validate_read_webbook, only: [:show]
 
   def show
     @webbook = Webbook.find_by(id: params[:webbook_id])
@@ -16,9 +16,9 @@ class PagesController < ApplicationController
 
   def user_has_book?
     current_user.purchase_history
-      .purchase_history_webbooks
-      .find_by(webbook_id: params[:webbook_id])
-      .present?
+                .purchase_history_webbooks
+                .find_by(webbook_id: params[:webbook_id])
+                .present?
   end
 
   def validate_read_webbook

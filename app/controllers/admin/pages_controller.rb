@@ -1,7 +1,7 @@
 class Admin::PagesController < ApplicationController
   before_action :require_admin
-  before_action :set_webbook, only:[:index, :show, :new, :edit, :update, :destroy]
-  before_action :set_page, only:[:show, :edit, :update, :destroy]
+  before_action :set_webbook, only: [:index, :show, :new, :edit, :update, :destroy]
+  before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   def index
     @pages = @webbook.pages.rank(:row_order)
@@ -17,7 +17,7 @@ class Admin::PagesController < ApplicationController
   def create
     @page = Page.new(page_params.merge(webbook_id: params[:webbook_id], page_number: Webbook.find_by(id: params[:webbook_id]).pages.last.page_number + 1))
     if @page.save
-      flash[:success] = "新しいページを作成しました"
+      flash[:success] = '新しいページを作成しました'
       redirect_to admin_webbook_pages_path
     else
       render 'new'
@@ -29,7 +29,7 @@ class Admin::PagesController < ApplicationController
 
   def update
     if @page.update(page_params)
-      flash[:success] = "WEBブックを更新しました"
+      flash[:success] = 'WEBブックを更新しました'
       redirect_to admin_webbook_pages_path
     else
       render 'edit'
@@ -38,7 +38,7 @@ class Admin::PagesController < ApplicationController
 
   def destroy
     @page.destroy
-    redirect_to admin_webbook_pages_path, notice: "削除しました"
+    redirect_to admin_webbook_pages_path, notice: '削除しました'
   end
 
   def sort

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :current_cart
-  
+
   before_action :login_required
 
   private

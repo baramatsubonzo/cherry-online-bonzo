@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Purchase", type: :system do
+RSpec.describe 'Purchase', type: :system do
   describe '管理者の場合purchase#indexが表示される' do
     before do
       visit login_path

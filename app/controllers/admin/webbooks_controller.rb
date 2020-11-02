@@ -1,6 +1,6 @@
 class Admin::WebbooksController < ApplicationController
   before_action :require_admin
-  before_action :set_webbook, only:[:show, :edit, :update, :destroy]
+  before_action :set_webbook, only: [:show, :edit, :update, :destroy]
 
   def index
     @webbooks = Webbook.all
@@ -16,8 +16,8 @@ class Admin::WebbooksController < ApplicationController
   def create
     @webbook = Webbook.new(webbook_params)
     if @webbook.save
-      flash[:success] = "新しいWEBブックを作成しました"
-      @page = @webbook.pages.create(webbook_id: @webbook.id, title: "表紙: #{@webbook.title}", content: "こちら表紙です", page_number: 1)
+      flash[:success] = '新しいWEBブックを作成しました'
+      @page = @webbook.pages.create(webbook_id: @webbook.id, title: "表紙: #{@webbook.title}", content: 'こちら表紙です', page_number: 1)
       redirect_to admin_webbook_url(@webbook.id)
     else
       render 'new'
@@ -29,7 +29,7 @@ class Admin::WebbooksController < ApplicationController
 
   def update
     if @webbook.update(webbook_params)
-      flash[:success] = "WEBブックを更新しました"
+      flash[:success] = 'WEBブックを更新しました'
       redirect_to admin_root_url
     else
       render 'edit'
@@ -38,7 +38,7 @@ class Admin::WebbooksController < ApplicationController
 
   def destroy
     @webbook.destroy
-    redirect_to admin_root_path, notice: "削除しました"
+    redirect_to admin_root_path, notice: '削除しました'
   end
 
   private
