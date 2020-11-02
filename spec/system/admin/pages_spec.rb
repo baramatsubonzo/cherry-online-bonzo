@@ -58,9 +58,6 @@ RSpec.describe "Admin#Page", type: :system do
           expect(Webbook.find_by(id: webbook_a).pages.count).to eq 2
         end
       end
-
-      # context 'pageが追加されない' do
-      # end
     end
   end
 
@@ -100,7 +97,6 @@ RSpec.describe "Admin#Page", type: :system do
     
     describe 'pageを編集することができる' do
       context 'pageが変更される' do
-        # let!(:webbook_a){FactoryBot.create(:webbook)}
         let!(:page_a) { FactoryBot.create(:page,  title: 'hoge', content: 'fuga') }
         context 'pageが追加される' do
           before do
@@ -122,9 +118,6 @@ RSpec.describe "Admin#Page", type: :system do
           end
         end
       end
-
-      # context 'pageが変更されない' do
-      # end
     end
   end
 
@@ -149,9 +142,6 @@ RSpec.describe "Admin#Page", type: :system do
           expect(page).to have_content("削除しました")
         end
       end
-
-      # context 'pageが削除されない' do
-      # end
     end
   end
 end

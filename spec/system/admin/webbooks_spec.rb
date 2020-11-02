@@ -56,9 +56,6 @@ RSpec.describe "Admin#Webbook", type: :system do
           expect(page).to have_current_path admin_webbook_path(Webbook.first.id)
         end
       end
-
-      # context 'Webbookが追加されない' do
-      # end
     end
   end
 
@@ -111,9 +108,6 @@ RSpec.describe "Admin#Webbook", type: :system do
           click_button '送信'
         end
 
-        # it 'Webbookのレコードが変更される' do
-        #   expect(webbook_a.title).to eq "fugafuga"
-        # end
         it '管理者用Top Pageが表示される' do
           expect(page).to have_current_path admin_root_path
         end
@@ -149,9 +143,6 @@ RSpec.describe "Admin#Webbook", type: :system do
         it 'Webbookのレコードが1つ減っている' do
         end
       end
-
-      # context 'Webbookが削除されない' do
-      # end
     end
   end
 end

@@ -74,8 +74,6 @@ RSpec.describe "Webbookを購入する", type: :system do
         end
         
       end
-      # it 'purchase_history_webbooksにレコードが変わらない' do
-      # end
       it 'ユーザートップページへいく' do
         expect(page).to have_current_path root_path
       end
