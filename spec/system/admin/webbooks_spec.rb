@@ -53,7 +53,7 @@ RSpec.describe "Admin#Webbook", type: :system do
           expect(Webbook.count).to eq 1
         end
         it '管理者用Top Pageが表示される' do
-          expect(page).to have_current_path admin_root_path
+          expect(page).to have_current_path admin_webbook_path(Webbook.first.id)
         end
       end
 
