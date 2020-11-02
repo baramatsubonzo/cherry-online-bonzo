@@ -13,6 +13,8 @@ RSpec.describe "Webbookを購入する", type: :system do
       let!(:purchase_history_webbook) { FactoryBot.create(:purchase_history_webbook, purchase_history: purchase_history, webbook: webbook_b) }
 
       before do
+        FactoryBot.create(:page, webbook_id: webbook_a.id)
+        FactoryBot.create(:page, webbook_id: webbook_b.id)
         visit login_path
         fill_in 'メールアドレス', with: 'user_1@sample.com'
         fill_in 'パスワード', with: 'password'
@@ -82,7 +84,7 @@ RSpec.describe "Webbookを購入する", type: :system do
 
   describe '発売日がまだ来ていないWebブックは購入できない' do
     let(:user_a) { FactoryBot.create(:user) }
-    let(:webbook_a) { FactoryBot.create(:webbook, release: false) }
+    let(:webbook_a) { FactoryBot.create(:webbook, release_date: Date.today + 1) }
     let(:webbook_b) { FactoryBot.create(:webbook, title: '履歴にある本') }
     let(:cart) { FactoryBot.create(:cart, user: user_a) }
     let!(:cart_webbook) { FactoryBot.create(:cart_webbook, cart: cart, webbook: webbook_a) }
@@ -92,6 +94,7 @@ RSpec.describe "Webbookを購入する", type: :system do
     context '発売日が今日より後の場合(購入できない)' do
       before do
         FactoryBot.create(:page, webbook_id: webbook_a.id)
+        FactoryBot.create(:page, webbook_id: webbook_b.id)
         visit login_path
         fill_in 'メールアドレス', with: 'user_1@sample.com'
         fill_in 'パスワード', with: 'password'
