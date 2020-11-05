@@ -15,6 +15,9 @@
               .card-text
                 %p= webbook.author
               .card-text
-                %p= "#{webbook.release_date}発売"
+                - if webbook.release_date > Date.today
+                  %p= "#{webbook.release_date}発売予定"
+                - else
+                  %p= "#{webbook.release_date}発売"
               .card-text
                 %h5= "#{webbook.price}円"
