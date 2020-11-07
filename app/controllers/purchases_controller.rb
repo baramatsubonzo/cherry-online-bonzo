@@ -1,9 +1,9 @@
 class PurchasesController < ApplicationController
   before_action :prevent_duouble_purchase, only: [:create]
   before_action :release_date_came?, only: [:create]
+  before_action :set_webbook
 
   def create
-    @webbook = Webbook.find(params[:id])
 
     @stripe_form = StripeForm.new(params[:stripeEmail], params[:stripeToken], @webbook)
     @stripe_form.save!
@@ -17,6 +17,10 @@ class PurchasesController < ApplicationController
 
   private
 
+  def set_webbook
+    @webbook = Webbook.find(params[:id])
+  end
+
   def prevent_duouble_purchase
     redirect_to root_path, notice: 'すでに購入済みの商品です' if user_has_book?
   end
@@ -29,7 +33,6 @@ class PurchasesController < ApplicationController
   end
 
   def release_date_came?
-    @webbook = Webbook.find(params[:id])
     redirect_to root_path, notice: '発売日前の商品です' if @webbook.release_date > Date.today
   end
 end

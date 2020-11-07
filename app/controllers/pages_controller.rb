@@ -3,7 +3,6 @@ class PagesController < ApplicationController
   before_action :validate_read_webbook, only: [:show]
 
   def show
-    @webbook = Webbook.find_by(id: params[:webbook_id])
     @page = Page.where(webbook_id: params[:webbook_id]).find_by(id: params[:id])
   end
 
