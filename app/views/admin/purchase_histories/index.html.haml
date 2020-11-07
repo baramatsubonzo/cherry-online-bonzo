@@ -12,9 +12,9 @@
     - @purchase_history_webbooks.each do |purchase_history_webbook|
       %tr
         // TODO　このゴリ押しは修正する
-        %td= Webbook.find(purchase_history_webbook.webbook_id).title
-        %td= Webbook.find(purchase_history_webbook.webbook_id).price
-        %td= User.find(PurchaseHistory.find(purchase_history_webbook.id).user_id).email
-        %td= User.find(PurchaseHistory.find(purchase_history_webbook.id).user_id).name
+        %td= purchase_history_webbook.webbook.title
+        %td= purchase_history_webbook.webbook.price
+        %td= purchase_history_webbook.purchase_history.user.email
+        %td= purchase_history_webbook.purchase_history.user.name
         %td= purchase_history_webbook.created_at
         %td= purchase_history_webbook.charge_id
