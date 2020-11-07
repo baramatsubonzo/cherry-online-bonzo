@@ -1,4 +1,4 @@
-class Admin::PagesController < ApplicationController
+class Admin::PagesController < Admin::ApplicationController
   before_action :require_admin
   before_action :set_webbook, only: [:index, :show, :new, :edit, :update, :destroy]
   before_action :set_page, only: [:show, :edit, :update, :destroy]
@@ -53,10 +53,6 @@ class Admin::PagesController < ApplicationController
   def page_params
     params.require(:page)
           .permit(:title, :content, :raw_order_position)
-  end
-
-  def require_admin
-    redirect_to root_path unless current_user.admin?
   end
 
   def set_webbook

@@ -1,5 +1,4 @@
-class Admin::WebbooksController < ApplicationController
-  before_action :require_admin
+class Admin::WebbooksController < Admin::ApplicationController
   before_action :set_webbook, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -46,10 +45,6 @@ class Admin::WebbooksController < ApplicationController
   def webbook_params
     params.require(:webbook)
           .permit(:title, :author, :description, :price, :release_date, :release, :image)
-  end
-
-  def require_admin
-    redirect_to root_path unless current_user.admin?
   end
 
   def set_webbook
