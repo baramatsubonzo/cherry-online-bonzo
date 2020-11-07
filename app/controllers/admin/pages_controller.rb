@@ -58,6 +58,6 @@ class Admin::PagesController < Admin::ApplicationController
   end
 
   def set_page
-    @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
+    @page = @webbook.pages.find(params[:id])
   end
 end
