@@ -43,7 +43,6 @@ class Admin::PagesController < Admin::ApplicationController
 
   def sort
     @webbook = Webbook.find(params[:webbook_id])
-    @page = Page.where(webbook_id: params[:webbook_id]).find(params[:id])
     @page.update(page_params)
     render nothing: true
   end
