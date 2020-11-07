@@ -1,6 +1,6 @@
 class Admin::PagesController < Admin::ApplicationController
   before_action :require_admin
-  before_action :set_webbook, only: [:index, :show, :new, :edit, :update, :destroy]
+  before_action :set_webbook
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   def index

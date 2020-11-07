@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_webbook, only: [:show]
+  before_action :set_webbook
   before_action :validate_read_webbook, only: [:show]
 
   def show
