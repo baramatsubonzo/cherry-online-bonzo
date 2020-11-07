@@ -2,9 +2,6 @@ class PurchasesController < ApplicationController
   before_action :prevent_duouble_purchase, only: [:create]
   before_action :release_date_came?, only: [:create]
 
-  def new
-  end
-
   def create
     @webbook = Webbook.find(params[:id])
 
