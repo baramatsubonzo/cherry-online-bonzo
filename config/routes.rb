@@ -1,3 +1,34 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    root "webbooks#index"
+    resources :webbooks do
+      resources :pages do
+        put :sort
+      end
+    end
+    resources :purchase_histories, only:[:index]
+  end
+
+  resource :mypage, only:[:show]
+  
+  get 'signup', to: 'users#new'
+  post 'signup', to: 'users#create'
+
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+
+  root "webbooks#index"
+  
+  resources :webbooks, only:[:index, :show] do
+    resources :pages, only:[:index, :show]
+  end
+
+  resources :carts, only:[:show]
+
+  resources :add_webbook_requests, only:[:create, :destroy]
+
+  resource :purchase_histories, only:[:index]
+
+  post "carts/:id/purchase", to: "purchases#create", as: "purchases"
 end

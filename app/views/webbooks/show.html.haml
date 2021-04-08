@@ -1,0 +1,6 @@
+%h2 Webブックの詳細ページ
+
+= render partial: 'content'
+
+= button_to 'カートに入れる', add_webbook_requests_path(webbook_id: @webbook.id), method: :post, class: 'btn btn-primary mr-3'
+  

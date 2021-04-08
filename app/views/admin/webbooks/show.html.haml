@@ -1,0 +1,7 @@
+%h2 管理者用Webブックの詳細ページ
+= render partial: 'webbooks/content'
+
+= link_to '編集', edit_admin_webbook_path, class: 'btn btn-primary mr-3'
+= link_to '削除', admin_webbook_path, method: :delete, data: {confirm: "「#{@webbook.title}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
+= link_to 'ページを作成する', new_admin_webbook_page_path(params[:id])
+= link_to 'この本を読む', admin_webbook_page_path(params[:id])

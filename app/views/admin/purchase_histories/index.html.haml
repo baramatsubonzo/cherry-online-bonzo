@@ -1,0 +1,20 @@
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Webブックのタイトル
+      %th 購入金額
+      %th 購入したユーザーのメールアドレス
+      %th 購入したユーザーの氏名
+      %th 購入日時
+      %th Stripeの決済ID
+      
+  %tbody
+    - @purchase_history_webbooks.each do |purchase_history_webbook|
+      %tr
+        // TODO　このゴリ押しは修正する
+        %td= purchase_history_webbook.webbook.title
+        %td= purchase_history_webbook.webbook.price
+        %td= purchase_history_webbook.purchase_history.user.email
+        %td= purchase_history_webbook.purchase_history.user.name
+        %td= purchase_history_webbook.created_at
+        %td= purchase_history_webbook.charge_id

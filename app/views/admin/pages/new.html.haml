@@ -1,0 +1,7 @@
+.row
+  .col-2
+    = render 'admin/pages/sidebar'
+  
+  .col-10
+    %h1 WEBブックページの新規作成画面
+    = render partial: 'form', locals: { model: @page, url: admin_webbook_pages_path }
